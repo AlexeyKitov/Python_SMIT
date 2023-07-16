@@ -1,0 +1,22 @@
+{
+  "2021-01-01": [
+    {
+      "cargo": "Glass",
+      "rate": 0.4
+    },
+    {
+      "cargo": "Other",
+      "rate": 0.2
+    }
+  ],
+  "2021-01-03": [
+    {
+      "cargo": "Glass",
+      "rate": 0.2
+    },
+    {
+      "cargo": "Other",
+      "rate": 0.5
+    }
+  ]
+}

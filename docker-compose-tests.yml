@@ -1,0 +1,10 @@
+services:
+  python_smit_api_tests:
+    container_name: python_smit_api_tests
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./Docker_compose/Dockerfile
+      target: tests
+    depends_on:
+      - nginx

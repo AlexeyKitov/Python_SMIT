@@ -1,0 +1,30 @@
+# Ignore all .pyc, .pyd, .pyo, .pyz files
+*.pyc
+*.pyd
+*.pyo
+*.pyz
+
+# Ignore all .egg-info files
+*.egg-info/
+
+# Ignore __pycache__ folder
+__pycache__/
+
+# Ignore build and dist folders
+build/
+dist/
+
+# Ignore .egg files
+*.egg/
+
+# Ignore tox, pytest_cache, venv, vscode, and idea folders
+.tox/
+.pytest_cache/
+.venv/
+.vscode/
+../.idea/
+
+# Ignore git files
+.git/
+.gitignore
+.dockerignore

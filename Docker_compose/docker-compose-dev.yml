@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  python_smit_api:
+    ports:
+      - "${FASTAPI_PORT}:${FASTAPI_PORT}"
+
+  python_smit_db:
+    ports:
+      - "${DB_PORT}:${DB_PORT}"

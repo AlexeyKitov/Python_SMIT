@@ -1,0 +1,7 @@
+fastapi==0.100.0
+gunicorn==20.1.0
+uvicorn==0.23.0
+aerich==0.7.1
+pydantic==1.10.11
+tortoise-orm[asyncpg]
+python-multipart==0.0.6

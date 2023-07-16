@@ -1,0 +1,56 @@
+version: '3.9'
+services:
+  python_smit_api:
+    container_name: python_smit_api
+    build:
+      context: .
+      dockerfile: ./Docker_compose/Dockerfile
+      target: python_smit_prod
+      args:
+        FASTAPI_PORT: $FASTAPI_PORT
+    image: python_smit_api
+    env_file:
+      - .env
+    depends_on:
+      python_smit_db:
+        condition: service_healthy
+      python_smit_api_migrations:
+        #Ждем когда временный контейнер с миграциями завершит работу
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  python_smit_api_migrations:
+    container_name: python_smit_api_migrations
+    env_file: .env
+    image: python_smit_api
+    #Миграции не нужны как самостоятельный сервис, запускаю командой из docker-compose
+    command: sh -c "aerich upgrade"
+    depends_on:
+      python_smit_db:
+        condition: service_healthy
+
+
+  python_smit_db:
+    container_name: python_smit_db
+
+    image: postgres
+    env_file:
+      - .env
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'" ]
+      interval: 10s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  nginx:
+    container_name: python_smit_nginx
+    image: nginx
+    volumes:
+      - ./Docker_compose/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./Docker_compose/nginx/configs:/etc/nginx/conf.d:rw
+    depends_on:
+      - python_smit_api
+    ports:
+      - "80:80"
+    restart: unless-stopped
