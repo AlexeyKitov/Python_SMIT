@@ -30,9 +30,7 @@ async def get_lists(
 
 
 @router.post("/upload_file")
-async def upload_file(
-    file: UploadFile = File(), insurance_service: InsuranceService = Depends()
-) -> UploadTariffOut:
+async def upload_file(file: UploadFile = File(), insurance_service: InsuranceService = Depends()) -> UploadTariffOut:
     """
     Загрузка тарифов из файла
     """
@@ -43,9 +41,7 @@ async def upload_file(
 
 
 @router.post("/set_tariff")
-async def post_price(
-    tariff: TariffIn, insurance_service: InsuranceService = Depends()
-) -> UploadTariffOut:
+async def post_price(tariff: TariffIn, insurance_service: InsuranceService = Depends()) -> UploadTariffOut:
     """
     Загрузка тарифа из json
     """

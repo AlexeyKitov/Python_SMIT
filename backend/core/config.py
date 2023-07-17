@@ -14,7 +14,7 @@ class ConfFastApi(BaseSettings):
     docs_url: str = "/api/openapi"
     openapi_url: str = "/api/openapi.json"
     base_dir: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    fastapi_port: int = Field(8001, env="FASTAPI_PORT")
+    fastapi_port: int = Field(8000, env="FASTAPI_PORT")
     fastapi_host: str = Field("127.0.0.1", env="FASTAPI_HOST")
 
     class Config:
@@ -27,15 +27,12 @@ class ConfPostgres(BaseSettings):
     db: str = Field("postgres_db_name", env="POSTGRES_DB")
     user: str = Field("postgres_user", env="POSTGRES_USER")
     password: str = Field("postgres_password", env="POSTGRES_PASSWORD")
-    batch_size: int = Field(100, env="BATCH_SIZE")
 
     class Config:
         env_file = ".env"
 
     def get_dsn(self):
-        return (
-            f"postgres://{self.user}:{self.password}@{self.host}:{self.port}/{self.db}"
-        )
+        return f"postgres://{self.user}:{self.password}@{self.host}:{self.port}/{self.db}"
 
 
 class Conf(BaseModel):

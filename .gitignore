@@ -140,7 +140,6 @@ dmypy.json
 /docker_compose/redis/cache/*
 /docker_compose/elastic/elk-data/*
 /docker_compose/elastic/share/*
-/docker_compose/nginx/configs/site.conf
 
 /docker-compose-full-dev.yml
 /docker-compose-dev.yml
